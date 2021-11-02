@@ -42,7 +42,7 @@ class _ButterfliesListState extends State<ButterfliesList> {
               : "Выбрано: ${_butterflies[_selectedIndex]}",
           // ignore: prefer_const_constructors
           style: TextStyle(fontSize: 30)),
-      Text(_descriptions[_selectedIndex]),
+      //Text(_descriptions[_selectedIndex]),
       Expanded(
           child: ListView.builder(
         itemCount: _butterflies.length,
@@ -55,10 +55,13 @@ class _ButterfliesListState extends State<ButterfliesList> {
           },
           // ignore: prefer_const_constructors
           title: Text(_butterflies[index], style: TextStyle(fontSize: 24)),
+          // ignore: prefer_const_constructors
+          leading: Text("\u{1F98B}"),
           selected: index == _selectedIndex,
           selectedTileColor: Colors.black12,
         ),
-      ))
+      )),
+      Text(_descriptions[_selectedIndex]),
     ]);
   }
 }
