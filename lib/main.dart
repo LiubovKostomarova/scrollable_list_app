@@ -52,7 +52,7 @@ class _ButterfliesListState extends State<ButterfliesList> {
         // ignore: sized_box_for_whitespace
         Expanded(
           child: ListView.builder(
-              //scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.horizontal,
               itemCount: _butterflies.length,
               itemBuilder: (BuildContext context, int index) => Container(
                   width: 50,
