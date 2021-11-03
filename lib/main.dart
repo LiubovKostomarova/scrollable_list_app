@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'my_flutter_app_icons.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -16,6 +19,7 @@ class ButterfliesList extends StatefulWidget {
 
 class _ButterfliesListState extends State<ButterfliesList> {
   final List<String> _butterflies = <String>[
+    // ignore: prefer_const_constructors
     "Adonis",
     "Duke of Burgundy",
     "Monarch",
@@ -40,14 +44,14 @@ class _ButterfliesListState extends State<ButterfliesList> {
       children: [
         Text(
             _selectedIndex == -1
-                ? ""
-                : "\u{1F98B} ${_butterflies[_selectedIndex]}",
+                ? "Nothing selected"
+                : " ${_butterflies[_selectedIndex]}",
             // ignore: prefer_const_constructors
             style: TextStyle(fontSize: 30)),
         // ignore: avoid_unnecessary_containers
         Container(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: Text(_descriptions[_selectedIndex],
+            child: Text(_descriptions[_selectedIndex = 1],
                 style: const TextStyle(fontSize: 20))),
         // ignore: sized_box_for_whitespace
         Expanded(
@@ -76,7 +80,7 @@ class _ButterfliesListState extends State<ButterfliesList> {
                         title: Text(_butterflies[index],
                             style: const TextStyle(fontSize: 24)),
                         // ignore: prefer_const_constructors
-                        leading: Text("\u{1F98B}"),
+                        leading: Icon(MyFlutterApp.butterfly1),
                         selected: index == _selectedIndex,
                         selectedTileColor: Colors.black12,
                       )))),
