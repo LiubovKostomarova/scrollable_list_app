@@ -39,53 +39,45 @@ class _ButterfliesListState extends State<ButterfliesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-            _selectedIndex == -1
-                ? "Nothing selected"
-                : " ${_butterflies[_selectedIndex]}",
-            // ignore: prefer_const_constructors
-            style: TextStyle(fontSize: 30)),
-        // ignore: avoid_unnecessary_containers
-        Container(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: Text(_descriptions[_selectedIndex = 1],
-                style: const TextStyle(fontSize: 20))),
-        // ignore: sized_box_for_whitespace
-        Expanded(
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: _butterflies.length,
-              itemBuilder: (BuildContext context, int index) => Container(
-                  width: 50,
-                  margin: const EdgeInsets.all(15.0),
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 5, color: Colors.blueAccent),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20.0))),
-                  // ignore: avoid_unnecessary_containers, sized_box_for_whitespace
-                  child: Container(
-                      width: 150,
-                      child: ListTile(
-                        onTap: () {
-                          setState(() {
-                            // устанавливаем индекс выделенного элемента
-                            _selectedIndex = index;
-                          });
-                        },
-                        // ignore: prefer_const_constructors, avoid_unnecessary_containers
-                        title: Text(_butterflies[index],
-                            style: const TextStyle(fontSize: 24)),
-                        // ignore: prefer_const_constructors
-                        leading: Icon(MyFlutterApp.butterfly1),
-                        selected: index == _selectedIndex,
-                        selectedTileColor: Colors.black12,
-                      )))),
-        ),
-      ],
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+          _selectedIndex == -1
+              ? "Select one butterfly \u{1F98B} "
+              : "\u{1F98B} ${_butterflies[_selectedIndex]}",
+          // ignore: prefer_const_constructors
+          style: TextStyle(fontSize: 30)),
+      // ignore: avoid_unnecessary_containers
+
+      // ignore: sized_box_for_whitespace
+      Expanded(
+          child: SizedBox(
+              height: 200.0,
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  itemExtent: 200,
+                  itemCount: _butterflies.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) => ListTile(
+                      onTap: () {
+                        setState(() {
+                          // устанавливаем индекс выделенного элемента
+                          _selectedIndex = index;
+                        });
+                      },
+                      // ignore: prefer_const_constructors, prefer_const_literals_to_create_immutables
+                      title: Column(children: <Widget>[
+                        const Icon(MyFlutterApp.butterfly1),
+                        Text(
+                            // ignore: prefer_const_constructors
+                            _butterflies[index],
+                            style: const TextStyle(fontSize: 24))
+                      ]),
+                      selected: index == _selectedIndex)))),
+      SizedBox(
+          height: 400.0,
+          //padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+          child: Text(_selectedIndex == -1 ? '' : _descriptions[_selectedIndex],
+              style: const TextStyle(fontSize: 20))),
+    ]);
   }
 }
